@@ -1,0 +1,69 @@
+header {
+    background-color: #628b48;
+    padding: 0.5em 0;
+    color: #fff;
+}
+    
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.container-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    font-family: "Caveat", cursive;
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.header-subtitle, nav a {
+    font-size: 1rem;
+    color: #fff;
+    margin: 0;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+nav li {
+    margin-left: 2em;
+}
+
+@media (max-width: 640px) {
+    .container {
+        text-align: center;
+    }
+  
+    .container-nav {
+        flex-direction: column;
+    }
+  
+    h1 {
+        font-size: 2rem;
+    }
+
+    .header-subtitle {
+        font-size: 0.8rem;
+    }
+
+    nav ul {
+        flex-direction: row;
+    }
+  
+    nav li {
+        margin: 0.5em 1em;
+    }
+}
+  
