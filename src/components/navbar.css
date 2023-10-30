@@ -58,4 +58,16 @@ nav li {
         margin: 0.5em 1em;
     }
 }
+
+.badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    border-radius: 9px;
+
+    font-size: 12px;
+    background: #fff;
+    color: #628b48;
+    padding: 0 5px;
+    vertical-align: middle;
+}
   

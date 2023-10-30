@@ -7,6 +7,7 @@ import Cart from './pages/cart/cart';
 
 function App() {
     const [cart, setCart] = useState([]);
+    const cartNumber = cart.length;
 
     function handleAddToCart (product) {
         let index = cart.findIndex((c) => c.id === product.id);
@@ -20,7 +21,7 @@ function App() {
         <div className='app'>
             <Router>
                 {/* Will always be available when put outside the Routes section */}
-                <Navbar />
+                <Navbar cartNumber={cartNumber} />
                 {/* Contains all the routes for this web app */}
                 <Routes>
                     <Route path='/' element={
