@@ -1,17 +1,16 @@
-import React from "react";
-
-export function Product (props) {
-    const {id, name, price, image} = props.product;
+function Product ({product, onAddToCart}) {
     return (
-        <div className="product">
-            <div className="product-image">
-                <img src={image} alt={name} />
+        <div className='product'>
+            <div className='product-image'>
+                <img src={product.image} alt={product.name} />
             </div>
-            <div className="product-info">
-                <h3 className="product-title">{name}</h3>
-                <h3 className="product-price">$ {price.toFixed(2)}</h3>
+            <div className='product-info'>
+                <h3 className='product-title'>{product.name}</h3>
+                <h3 className='product-price'>$ {product.price.toFixed(2)}</h3>
             </div>
-            <button className="add-to-cart-btn" role="button">Add to cart</button>
+            <button className='add-to-cart-btn' onClick={() => onAddToCart(product)}>Add to cart</button>
         </div>
     );
 }
+
+export default Product;

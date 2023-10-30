@@ -65,7 +65,7 @@ export const PRODUCTS = [
         image: product9
     },
     {
-        id: 20,
+        id: 10,
         name: "Shirt 2",
         price: 30.00,
         image: product10
