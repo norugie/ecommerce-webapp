@@ -6,7 +6,7 @@ function Navbar ({cartNumber}) {
         <header>
             <div className='container container-nav'>
                 <div className='title'>
-                    <h1 className='header'>Rugie's Shop</h1>
+                    <h1 className='header'>React Shop</h1>
                     <p className='header-subtitle'>Your One Stop Sample Apparel Shop</p>
                 </div>
                 <nav className='navbar'>
