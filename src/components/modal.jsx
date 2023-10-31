@@ -2,7 +2,7 @@ import './modal.css';
 
 function Modal ({selectedProduct, open, setOpen, onAddToCart}) {
     return (
-        <div className={`modal ${open ? "open" : ''}`}>
+        <div className={`modal ${open ? 'open' : ''}`}>
             <div className='modal-content'>
                 <div className='product-item'>
                     <div className='content'>

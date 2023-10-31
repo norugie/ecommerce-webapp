@@ -18,12 +18,17 @@ function Cart ({cart, setCart, total, setTotal}) {
         setCart((cart) => cart.filter((item) => item.id !== cartItem.id));
     }
 
+    function handleRemoveAllItemsFromCart () {
+        setTotal(0);
+        setCart([]);
+    }
+
     return(
         <>
             <h2>Cart Page</h2>
             <div className='cart'>
-                <Basket cart={cart} setCart={setCart} onChangeItemQuantity={handleUpdateCartItemQuantity} onRemoveItemFromCart={handleRemoveItemFromCart} />
-                <Summary total={total} />
+                <Basket cart={cart} onChangeItemQuantity={handleUpdateCartItemQuantity} onRemoveItemFromCart={handleRemoveItemFromCart} onClearAllItemsFromCart={handleRemoveAllItemsFromCart} />
+                <Summary total={total} on />
             </div>
         </>
     );
