@@ -1,34 +1,19 @@
-function Basket () {
+import Item from './item';
+
+function Basket ({cart, setCart, onChangeItemQuantity, onRemoveItemFromCart}) {
     return (
-        <div class="basket">
-            <div class="basket-labels">
+        <div className='basket'>
+            <div className='basket-labels'>
                 <ul>
-                <li class="item item-heading">Item</li>
-                <li class="price">Price</li>
-                <li class="quantity">Quantity</li>
-                <li class="subtotal">Subtotal</li>
+                    <li className='item item-heading'>Item</li>
+                    <li className='price'>Price</li>
+                    <li className='quantity'>Quantity</li>
+                    <li className='subtotal'>Subtotal</li>
                 </ul>
             </div>
-            <div class="basket-product">
-                <div class="item">
-                <div class="product-cart-image">
-                    <img src="http://placehold.it/120x166" alt="Placholder Image 2" class="product-frame" />
-                </div>
-                <div class="product-details">
-                    <h2><strong><span class="item-quantity">4</span> x Eliza J</strong> Lace Sleeve Cuff Dress</h2>
-                    <p><strong>Navy, Size 18</strong></p>
-                    <p>Product Code - 232321939</p>
-                </div>
-                </div>
-                <div class="price">26.00</div>
-                <div class="quantity">
-                <input type="number" value="4" min="1" class="quantity-field" />
-                </div>
-                <div class="subtotal">104.00</div>
-                <div class="remove">
-                <button>Remove</button>
-                </div>
-            </div>
+
+            {cart.length > 0 ? cart.map((item) => <Item key={item.id} item={item} onChangeItemQuantity={onChangeItemQuantity} onRemoveItemFromCart={onRemoveItemFromCart} />) : <div className='empty-cart'>Your cart is empty.</div>}
+            {cart.length > 0 && <button onClick={() => setCart([])}>Clear Cart</button>}
         </div>
     );
 }

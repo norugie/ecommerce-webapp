@@ -47,26 +47,14 @@
     object-fit: cover;
 }
 
+.product-title a {
+    color: #628b48;
+}
+
 .product-info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-
-.add-to-cart-btn {
-    width: 100%;
-    background-color: #628b48;
-    color: #fff;
-    border: 0;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
-    padding: 6px 16px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
-    cursor: pointer;
 }
 
 @media (min-width: 790px) {
@@ -85,5 +73,9 @@
     .product {
         width: 100%;
         padding: 0 15px;
+    }
+
+    .search-form {
+        padding: 20px 15px;
     }
 }

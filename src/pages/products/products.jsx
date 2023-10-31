@@ -9,7 +9,6 @@ function Products({onAddToCart}) {
     const [open, setOpen] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [search, setSearch] = useState('');
-    console.log(open);
 
     return(
         <>
