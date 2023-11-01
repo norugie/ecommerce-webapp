@@ -11,7 +11,7 @@ function Login () {
                 </div>
                 <br />
                 <div className='login-submit'>
-                    <button className='checkout-cta'>LOGIN</button>
+                    <button className='login-submit-btn'>LOGIN</button>
                 </div>
             </form>
         </div>

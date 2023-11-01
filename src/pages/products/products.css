@@ -105,6 +105,10 @@
 
 .product-quantity, .product-image {
     padding: 20px 0;
+    
+    & label {
+        font-size: 18px;
+    }
 }
 
 .form-submit {
