@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { PRODUCTS } from '../../assets/data/products';
 import Product from '../../components/product';
-import Form from '../../components/form';
+import SearchForm from '../../components/searchform';
 import Modal from '../../components/modal';
 import './products.css';
 
@@ -13,7 +13,7 @@ function Products({onAddToCart}) {
     return(
         <>
             <h2>Products Page</h2>
-            <Form setSearch={setSearch} />
+            <SearchForm setSearch={setSearch} />
             <div className='products'>
                 {
                     PRODUCTS.filter((product) => {

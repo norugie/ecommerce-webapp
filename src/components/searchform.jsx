@@ -1,4 +1,4 @@
-function Form ({setSearch}) {
+function SearchForm ({ setSearch }) {
     return (
         <form className='search-form'>
             <input type='text' 
@@ -12,4 +12,4 @@ function Form ({setSearch}) {
     );
 }
 
-export default Form;
+export default SearchForm;

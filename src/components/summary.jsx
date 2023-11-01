@@ -1,4 +1,4 @@
-function Summary ({total}) {
+function Summary ({ total }) {
     return (
         <aside>
             <div className='summary'>

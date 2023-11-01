@@ -1,4 +1,9 @@
-function Product ({product, setOpen, setSelectedProduct, onAddToCart}) {
+function Product ({
+    product, 
+    setOpen, 
+    setSelectedProduct, 
+    onAddToCart
+}) {
     function onOpenProductModal (product) {
         setOpen(true);
         setSelectedProduct(product);

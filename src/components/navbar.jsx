@@ -13,6 +13,7 @@ function Navbar ({cartNumber}) {
                     <ul>
                         <li><Link to={'/'}>Products</Link></li>
                         <li><Link to={'/cart'}>Cart <span className='badge badge-warning'> {cartNumber} </span></Link></li>
+                        <li><Link to={'/login'}>Login</Link></li>
                     </ul>
                 </nav>
             </div>
