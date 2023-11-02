@@ -1,32 +1,36 @@
 import { useState } from 'react';
+import { useContext } from "react";
+import { CartContext } from "../context/cart-context";
 
-function Item ({ 
-    item, 
-    onChangeItemQuantity, 
-    onRemoveItemFromCart 
-}) {
+function Item ({ item }) {
     const [quantity, setQuantity] = useState(item.quantity);
+    const { updateCartItemQuantity, removeItemFromCart } = useContext(CartContext);
 
     function onChangeValue(quantity) {
         quantity = parseInt(quantity);
         setQuantity(parseInt(quantity));
-        onChangeItemQuantity(item, quantity);
+        updateCartItemQuantity(item, quantity);
     }
     return (
         <div className='basket-product'>
             <div className='item'>
               <div className='product-cart-image'>
-                  <img src={item.image} alt={item.name} className='product-frame' />
+                    <img 
+                    src={item.image} 
+                    alt={item.name} 
+                    className='product-frame'
+                    />
               </div>
               <div className='product-details'>
-                  <h2>{item.name}</h2>
-                  <p>{item.description}</p>
+                    <h2>{item.name}</h2>
+                    <p>{item.description}</p>
               </div>
             </div>
             <div className='price'>$ {item.price}</div>
             <div className='quantity'>
                 <input
                     type='number'
+                    id='item-cart-quantity'
                     className='quantity-field'
                     min='1'
                     value={parseInt(quantity)}
@@ -35,7 +39,7 @@ function Item ({
             </div>
             <div className='subtotal'>$ {item.price * quantity}</div>
             <div className='remove'>
-                <button onClick={() => onRemoveItemFromCart(item)}>Remove</button>
+                <button onClick={() => removeItemFromCart(item)}>Remove</button>
             </div>
         </div>
     );

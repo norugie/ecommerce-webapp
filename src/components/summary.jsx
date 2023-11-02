@@ -1,4 +1,8 @@
-function Summary ({ total }) {
+import { useContext } from "react";
+import { CartContext } from "../context/cart-context";
+
+function Summary () {
+    const { total } = useContext(CartContext);
     return (
         <aside>
             <div className='summary'>

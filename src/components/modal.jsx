@@ -1,11 +1,14 @@
+import { useContext } from "react";
+import { CartContext } from "../context/cart-context";
 import './modal.css';
 
 function Modal ({
     selectedProduct, 
     open, 
-    setOpen, 
-    onAddToCart
+    setOpen
 }) {
+    const { addItemToCart } = useContext(CartContext);
+
     return (
         <div className={`modal ${open ? 'open' : ''}`}>
             <div className='modal-content'>
@@ -16,9 +19,12 @@ function Modal ({
                         <h4>Product Description</h4>
                         <p>{selectedProduct.description}</p>
                         <br />
-                        <button className='add-to-cart-btn' onClick={() => onAddToCart(selectedProduct)}>Add to cart</button>
+                        <button className='add-to-cart-btn' onClick={() => addItemToCart(selectedProduct)}>Add to cart</button>
                     </div>
-                    <img src={selectedProduct.image} alt={selectedProduct.name} />
+                    <img 
+                        src={selectedProduct.image} 
+                        alt={selectedProduct.name} 
+                    />
                 </div>
 
                 <a href='/#' className='modal-close' role='button' onClick={() => setOpen(false)}>&times;</a>

@@ -1,9 +1,13 @@
+import { useContext } from "react";
+import { CartContext } from "../context/cart-context";
+
 function Product ({
     product, 
     setOpen, 
-    setSelectedProduct, 
-    onAddToCart
+    setSelectedProduct
 }) {
+    const { addItemToCart } = useContext(CartContext);
+    
     function onOpenProductModal (product) {
         setOpen(true);
         setSelectedProduct(product);
@@ -18,7 +22,7 @@ function Product ({
                 <h3 className='product-title'><a href='/#' onClick={() => onOpenProductModal(product)}>{product.name}</a></h3>
                 <h3 className='product-price'>$ {product.price}</h3>
             </div>
-            <button className='add-to-cart-btn' onClick={() => onAddToCart(product)}>Add to cart</button>
+            <button className='add-to-cart-btn' onClick={() => addItemToCart(product)}>Add to cart</button>
         </div>
     );
 }

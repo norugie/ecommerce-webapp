@@ -1,7 +1,8 @@
 function SearchForm ({ setSearch }) {
     return (
         <form className='search-form'>
-            <input type='text' 
+            <input 
+                type='text' 
                 id='product-search' 
                 className='search-text' 
                 autoComplete='off' 
