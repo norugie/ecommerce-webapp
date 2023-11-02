@@ -7,12 +7,6 @@ export const CartContextProvider = (props) => {
         localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
     );
 
-    const [productName, setProductName] = useState('');
-    const [productDescription, setProductDescription] = useState('');
-    const [productPrice, setProductPrice] = useState(0.00);
-    const [productQuantity, setProductQuantity] = useState(0);
-    const [productImage, setProductImage] = useState('');
-
     const { total, cartNumber } = useMemo(() => {
         return cart.reduce(
             (acc, item) => {
@@ -55,25 +49,12 @@ export const CartContextProvider = (props) => {
         setCart([]);
     }
 
-    // Product Functions ============
-    function addProduct (product) {
-        console.log(product);
-    }
-
-    function updateProduct (product) {
-        console.log(product);
-    }
-
-    function deleteProduct (id) {
-        
-    }
-
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
-    const contextValue = {
+    const cartContextValue = {
         // Cart states
         cart, setCart, 
         cartNumber, 
@@ -81,20 +62,11 @@ export const CartContextProvider = (props) => {
         addItemToCart,
         updateCartItemQuantity,
         removeItemFromCart,
-        removeAllItemsFromCart,
-
-        // Product states
-        productName, setProductName,
-        productDescription, setProductDescription,
-        productPrice, setProductPrice,
-        productQuantity, setProductQuantity,
-        productImage, setProductImage,
-        addProduct,
-        updateProduct
+        removeAllItemsFromCart
     }
 
     return (
-        <CartContext.Provider value={contextValue}>
+        <CartContext.Provider value={cartContextValue}>
             {props.children}
         </CartContext.Provider>
     );

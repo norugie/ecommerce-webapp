@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CartContext } from "../../context/cart-context";
+import { ProductContext } from "../../context/product-context";
 
 function AddProduct () {
     const { 
@@ -10,7 +10,7 @@ function AddProduct () {
         productImage, setProductImage,
 
         addProduct
-    } = useContext(CartContext);
+    } = useContext(ProductContext);
     
     function handleAddProduct (e) {
         e.preventDefault();
