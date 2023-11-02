@@ -7,7 +7,6 @@ function Item ({ item }) {
     const { updateCartItemQuantity, removeItemFromCart } = useContext(CartContext);
 
     function onChangeValue(quantity) {
-        quantity = parseInt(quantity);
         setQuantity(parseInt(quantity));
         updateCartItemQuantity(item, quantity);
     }
