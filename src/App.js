@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { CartContextProvider } from './context/cart-context';
-import { ProductContextProvider } from './context/product-context';
+import { ShopContextProvider } from './context/shop-context';
 
 import Navbar from './components/navbar';
 import Products from './pages/products/products';
@@ -14,7 +13,7 @@ function App () {
     return (
         <div className='app'>
             <Router>
-                <CartContextProvider>
+                <ShopContextProvider>
                     <Navbar />
                     <Routes>
                         <Route
@@ -41,10 +40,6 @@ function App () {
                                 </div>
                         }
                         />
-                    </Routes>
-                </CartContextProvider>
-                <ProductContextProvider>
-                    <Routes>
                         <Route
                             path='/products/add'
                             element={
@@ -62,7 +57,7 @@ function App () {
                         }
                         />
                     </Routes>
-                </ProductContextProvider>
+                </ShopContextProvider>
             </Router>
         </div>
     );

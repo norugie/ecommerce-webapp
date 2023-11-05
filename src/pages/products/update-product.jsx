@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ProductContext } from "../../context/product-context";
+import { ShopContext } from "../../context/shop-context";
 
 function UpdateProduct () {
     const { 
@@ -10,7 +10,7 @@ function UpdateProduct () {
         productImage, setProductImage,
 
         updateProduct
-    } = useContext(ProductContext);
+    } = useContext(ShopContext);
 
     function handleUpdateProduct (e) {
         e.preventDefault();

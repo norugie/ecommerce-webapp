@@ -1,8 +1,10 @@
+import axios from "axios";
 import { createContext, useState, useEffect, useMemo } from "react";
 
-export const CartContext = createContext();
+export const ShopContext = createContext();
 
-export const CartContextProvider = (props) => {
+export const ShopContextProvider = (props) => {
+    // Cart States ============
     const [cart, setCart] = useState(
         localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
     );
@@ -49,25 +51,64 @@ export const CartContextProvider = (props) => {
         setCart([]);
     }
 
-
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
-    const cartContextValue = {
-        // Cart states
+    // Product States ============
+    const [productName, setProductName] = useState('');
+    const [productDescription, setProductDescription] = useState('');
+    const [productPrice, setProductPrice] = useState(0.00);
+    const [productQuantity, setProductQuantity] = useState(0);
+    const [productImage, setProductImage] = useState('');
+
+    // Product Functions ============
+    function addNewProduct (product) {
+        console.log(product);
+
+        axios.post('http://localhost:3001/product/create', {
+            name: product.name,
+            description: product.description,
+            price: product.price,
+            quantity: product.quantity,
+            image: product.image
+        }).then((response) => {
+            console.log('Success!');
+            console.log(response);
+        });
+    }
+
+    function updateCurrentProduct (product) {
+        console.log(product);
+    }
+
+    function deleteCurrentProduct (id) {
+
+    }
+
+    const shopContextValue = {
+        // Cart context values
         cart, setCart, 
         cartNumber, 
         total, 
         addItemToCart,
         updateCartItemQuantity,
         removeItemFromCart,
-        removeAllItemsFromCart
+        removeAllItemsFromCart,
+
+        // Product context values
+        productName, setProductName,
+        productDescription, setProductDescription,
+        productPrice, setProductPrice,
+        productQuantity, setProductQuantity,
+        productImage, setProductImage,
+        addNewProduct,
+        updateCurrentProduct
     }
 
     return (
-        <CartContext.Provider value={cartContextValue}>
+        <ShopContext.Provider value={shopContextValue}>
             {props.children}
-        </CartContext.Provider>
+        </ShopContext.Provider>
     );
 };

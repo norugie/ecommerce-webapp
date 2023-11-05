@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ProductContext } from "../../context/product-context";
+import { ShopContext } from "../../context/shop-context";
 
 function AddProduct () {
     const { 
@@ -9,8 +9,8 @@ function AddProduct () {
         productQuantity, setProductQuantity,
         productImage, setProductImage,
 
-        addProduct
-    } = useContext(ProductContext);
+        addNewProduct
+    } = useContext(ShopContext);
     
     function handleAddProduct (e) {
         e.preventDefault();
@@ -30,7 +30,7 @@ function AddProduct () {
             image: productImage
         };
 
-        addProduct(newProduct);
+        addNewProduct(newProduct);
 
         setProductName('');
         setProductDescription('');

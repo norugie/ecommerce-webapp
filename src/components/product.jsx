@@ -1,12 +1,12 @@
 import { useContext } from "react";
-import { CartContext } from "../context/cart-context";
+import { ShopContext } from "../context/shop-context";
 
 function Product ({
     product, 
     setOpen, 
     setSelectedProduct
 }) {
-    const { addItemToCart } = useContext(CartContext);
+    const { addItemToCart } = useContext(ShopContext);
     
     function onOpenProductModal (product) {
         setOpen(true);

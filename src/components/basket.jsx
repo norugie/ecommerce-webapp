@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { CartContext } from "../context/cart-context";
+import { ShopContext } from "../context/shop-context";
 import Item from './item';
 
 function Basket () {
-    const { cart, removeAllItemsFromCart } = useContext(CartContext);
+    const { cart, removeAllItemsFromCart } = useContext(ShopContext);
     return (
         <div className='basket'>
             <div className='basket-labels'>

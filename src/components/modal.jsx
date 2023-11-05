@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CartContext } from "../context/cart-context";
+import { ShopContext } from "../context/shop-context";
 import './modal.css';
 
 function Modal ({
@@ -7,7 +7,7 @@ function Modal ({
     open, 
     setOpen
 }) {
-    const { addItemToCart } = useContext(CartContext);
+    const { addItemToCart } = useContext(ShopContext);
 
     return (
         <div className={`modal ${open ? 'open' : ''}`}>

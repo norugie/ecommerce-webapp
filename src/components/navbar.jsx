@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useContext } from "react";
-import { CartContext } from "../context/cart-context";
+import { ShopContext } from "../context/shop-context";
 import './navbar.css';
 
 function Navbar () {
-    const { cartNumber } = useContext(CartContext);
+    const { cartNumber } = useContext(ShopContext);
     return(
         <header>
             <div className='container container-nav'>
