@@ -27,7 +27,7 @@ function AddProduct () {
             description: productDescription,
             price: parseFloat(productPrice),
             quantity: parseInt(productQuantity),
-            image: productImage
+            image: productImage !== '' ? productImage : 'product-placeholder.png'
         };
 
         addNewProduct(newProduct);

@@ -7,7 +7,8 @@ function Item ({ item }) {
     const { updateCartItemQuantity, removeItemFromCart } = useContext(ShopContext);
 
     function onChangeValue(quantity) {
-        setQuantity(parseInt(quantity));
+        quantity = parseInt(quantity);
+        setQuantity(quantity);
         updateCartItemQuantity(item, quantity);
     }
     return (
@@ -15,7 +16,7 @@ function Item ({ item }) {
             <div className='item'>
               <div className='product-cart-image'>
                     <img 
-                    src={item.image} 
+                    src={ require(`../assets/images/products/${item.image}`) } 
                     alt={item.name} 
                     className='product-frame'
                     />
@@ -29,10 +30,10 @@ function Item ({ item }) {
             <div className='quantity'>
                 <input
                     type='number'
-                    id='item-cart-quantity'
+                    id={`item-cart-quantity-${item.id}`}
                     className='quantity-field'
                     min='1'
-                    value={parseInt(quantity)}
+                    value={quantity}
                     onChange={(e) => onChangeValue(e.target.value)}
                 />
             </div>

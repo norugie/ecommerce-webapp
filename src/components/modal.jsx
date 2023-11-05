@@ -22,7 +22,7 @@ function Modal ({
                         <button className='add-to-cart-btn' onClick={() => addItemToCart(selectedProduct)}>Add to cart</button>
                     </div>
                     <img 
-                        src={selectedProduct.image} 
+                        src={ require(`../assets/images/products/${selectedProduct.image}`) } 
                         alt={selectedProduct.name} 
                     />
                 </div>

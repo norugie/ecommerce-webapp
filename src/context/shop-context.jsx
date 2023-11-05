@@ -1,5 +1,5 @@
-import axios from "axios";
-import { createContext, useState, useEffect, useMemo } from "react";
+import axios from 'axios';
+import { createContext, useState, useCallback, useEffect, useMemo } from 'react';
 
 export const ShopContext = createContext();
 
@@ -51,11 +51,8 @@ export const ShopContextProvider = (props) => {
         setCart([]);
     }
 
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart]);
-
     // Product States ============
+    const [products, setProducts] = useState([]);
     const [productName, setProductName] = useState('');
     const [productDescription, setProductDescription] = useState('');
     const [productPrice, setProductPrice] = useState(0.00);
@@ -63,18 +60,23 @@ export const ShopContextProvider = (props) => {
     const [productImage, setProductImage] = useState('');
 
     // Product Functions ============
-    function addNewProduct (product) {
-        console.log(product);
+    const getProducts = async () => {
+        await axios.get('http://localhost:3001/products').then((response) => {
+            setProducts(response.data);
+        });
+    }
 
-        axios.post('http://localhost:3001/product/create', {
+    function addNewProduct (product) {
+        axios.post('http://localhost:3001/products/create', {
             name: product.name,
             description: product.description,
             price: product.price,
             quantity: product.quantity,
             image: product.image
         }).then((response) => {
-            console.log('Success!');
-            console.log(response);
+            if (response.status === 200) {
+                window.location = '/' 
+            }
         });
     }
 
@@ -85,6 +87,13 @@ export const ShopContextProvider = (props) => {
     function deleteCurrentProduct (id) {
 
     }
+
+    //  ============================================================
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        getProducts();
+    }, [cart]);
 
     const shopContextValue = {
         // Cart context values
@@ -97,6 +106,7 @@ export const ShopContextProvider = (props) => {
         removeAllItemsFromCart,
 
         // Product context values
+        products,
         productName, setProductName,
         productDescription, setProductDescription,
         productPrice, setProductPrice,
