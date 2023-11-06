@@ -4,6 +4,29 @@ import { createContext, useState, useEffect, useMemo } from 'react';
 export const ShopContext = createContext();
 
 export const ShopContextProvider = (props) => {
+    // USER ==========================================================
+    // User States ============
+    const [user, setUser] = useState(
+        localStorage.getItem('user') || localStorage.getItem('user') === '' ? localStorage.getItem('user') : ''
+    );
+
+    function loginAdmin (login) {
+        axios.post('http://localhost:3001/login', {
+            username: login.username,
+            password: login.password
+        }).then((response) => {
+            if (response.status === 200) {
+                setUser(response.data[0].name);
+                window.location = '/';
+            }
+        });
+    }
+
+    function logoutAdmin () {
+        setUser('');
+        window.location = '/';
+    }
+
     // CART ==========================================================
     // Cart States ============
     const [cart, setCart] = useState(
@@ -63,7 +86,7 @@ export const ShopContextProvider = (props) => {
             image: product.image
         }).then((response) => {
             if (response.status === 200) {
-                window.location = '/' 
+                window.location = '/'; 
             }
         });
     }
@@ -78,7 +101,7 @@ export const ShopContextProvider = (props) => {
             image: product.image
         }).then((response) => {
             if (response.status === 200) {
-                window.location = '/' 
+                window.location = '/'; 
             }
         });
     }
@@ -87,7 +110,7 @@ export const ShopContextProvider = (props) => {
         console.log(id);
         axios.delete(`http://localhost:3001/products/${id}/delete`).then((response) => {
             if (response.status === 200) {
-                window.location = '/' 
+                window.location = '/'; 
             }
         });
     }
@@ -95,10 +118,16 @@ export const ShopContextProvider = (props) => {
     //  ============================================================
 
     useEffect(() => {
+        localStorage.setItem('user', user);
         localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart]);
+    }, [user, cart]);
 
     const shopContextValue = {
+        // User context values
+        user,
+        loginAdmin,
+        logoutAdmin,
+
         // Cart context values
         cart, setCart, 
         cartNumber, 

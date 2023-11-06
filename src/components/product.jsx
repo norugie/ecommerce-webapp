@@ -8,6 +8,7 @@ function Product ({
     setSelectedProduct
 }) {
     const { 
+        user,
         addItemToCart,
         deleteCurrentProduct
     } = useContext(ShopContext);
@@ -32,12 +33,15 @@ function Product ({
                 <h3 className='product-title'><a href='/#' onClick={() => onOpenProductModal(product)}>{product.name}</a></h3>
                 <h3 className='product-price'>$ {product.price}</h3>
             </div>
-            <button className='add-to-cart-btn' onClick={() => addItemToCart(product)}>Add to cart</button>
+            {!user && <button className='add-to-cart-btn' onClick={() => addItemToCart(product)}>Add to cart</button>}
             
-            <div className='manage-product'>
-                <button className='update-btn' onClick={updateProductRoute}>Update</button>
-                <button className='delete-btn' onClick={() => deleteCurrentProduct(product.id)}>Delete</button>
-            </div>
+            {
+                user &&
+                <div className='manage-product'>
+                    <button className='update-btn' onClick={updateProductRoute}>Update</button>
+                    <button className='delete-btn' onClick={() => deleteCurrentProduct(product.id)}>Delete</button>
+                </div>
+            }
         </div>
     );
 }

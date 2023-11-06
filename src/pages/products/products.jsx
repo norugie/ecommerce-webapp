@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import Product from '../../components/product';
 import SearchForm from '../../components/search-form';
@@ -19,18 +18,13 @@ function Products () {
         setProducts(response.data);
     }, []);
 
-    let navigate = useNavigate(); 
-    function addProductRoute () { 
-        navigate('/products/add');
-    }
-
     useEffect(() => {
         getProducts();
     }, [getProducts]);
 
     return(
         <>
-            <h2>Products Page <span><button className='create-product-btn' onClick={addProductRoute}>Add New Product</button></span></h2>
+            <h2>Products Page</h2>
             <SearchForm setSearch={setSearch} />
             <div className='products'>
                 {
