@@ -1,9 +1,10 @@
 import axios from 'axios';
-import { createContext, useState, useCallback, useEffect, useMemo } from 'react';
+import { createContext, useState, useEffect, useMemo } from 'react';
 
 export const ShopContext = createContext();
 
 export const ShopContextProvider = (props) => {
+    // CART ==========================================================
     // Cart States ============
     const [cart, setCart] = useState(
         localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
@@ -51,21 +52,8 @@ export const ShopContextProvider = (props) => {
         setCart([]);
     }
 
-    // Product States ============
-    const [products, setProducts] = useState([]);
-    const [productName, setProductName] = useState('');
-    const [productDescription, setProductDescription] = useState('');
-    const [productPrice, setProductPrice] = useState(0.00);
-    const [productQuantity, setProductQuantity] = useState(0);
-    const [productImage, setProductImage] = useState('');
-
+    // PRODUCTS =========================================================
     // Product Functions ============
-    const getProducts = async () => {
-        await axios.get('http://localhost:3001/products').then((response) => {
-            setProducts(response.data);
-        });
-    }
-
     function addNewProduct (product) {
         axios.post('http://localhost:3001/products/create', {
             name: product.name,
@@ -81,18 +69,33 @@ export const ShopContextProvider = (props) => {
     }
 
     function updateCurrentProduct (product) {
-        console.log(product);
+        axios.put('http://localhost:3001/products/update', {
+            id: product.id,
+            name: product.name,
+            description: product.description,
+            price: product.price,
+            quantity: product.quantity,
+            image: product.image
+        }).then((response) => {
+            if (response.status === 200) {
+                window.location = '/' 
+            }
+        });
     }
 
     function deleteCurrentProduct (id) {
-
+        console.log(id);
+        axios.delete(`http://localhost:3001/products/${id}/delete`).then((response) => {
+            if (response.status === 200) {
+                window.location = '/' 
+            }
+        });
     }
 
     //  ============================================================
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
-        getProducts();
     }, [cart]);
 
     const shopContextValue = {
@@ -106,14 +109,9 @@ export const ShopContextProvider = (props) => {
         removeAllItemsFromCart,
 
         // Product context values
-        products,
-        productName, setProductName,
-        productDescription, setProductDescription,
-        productPrice, setProductPrice,
-        productQuantity, setProductQuantity,
-        productImage, setProductImage,
         addNewProduct,
-        updateCurrentProduct
+        updateCurrentProduct,
+        deleteCurrentProduct
     }
 
     return (

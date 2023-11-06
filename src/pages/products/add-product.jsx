@@ -1,17 +1,15 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ShopContext } from "../../context/shop-context";
 
 function AddProduct () {
-    const { 
-        productName, setProductName,
-        productDescription, setProductDescription,
-        productPrice, setProductPrice,
-        productQuantity, setProductQuantity,
-        productImage, setProductImage,
-
-        addNewProduct
-    } = useContext(ShopContext);
+    const { addNewProduct } = useContext(ShopContext);
     
+    const [productName, setProductName] = useState('');
+    const [productDescription, setProductDescription] = useState('');
+    const [productPrice, setProductPrice] = useState(0.00);
+    const [productQuantity, setProductQuantity] = useState(0);
+    const [productImage, setProductImage] = useState('');
+
     function handleAddProduct (e) {
         e.preventDefault();
         if (
@@ -19,6 +17,9 @@ function AddProduct () {
             !productPrice || 
             !productQuantity
         ) return;
+
+        const formdata = new FormData();
+        formdata.append('file', productImage);
 
         const id = crypto.randomUUID();
         const newProduct = {
@@ -31,12 +32,6 @@ function AddProduct () {
         };
 
         addNewProduct(newProduct);
-
-        setProductName('');
-        setProductDescription('');
-        setProductPrice(0.00);
-        setProductQuantity(0);
-        setProductImage('');
     } 
 
     return (
@@ -84,7 +79,7 @@ function AddProduct () {
                         className='image-field'
                         name='product-image' 
                         accept='image/*'
-                        onChange={(e) => setProductImage(e.target.value)}
+                        onChange={(e) => {setProductImage(e.target.files[0])}}
                     />
                 </div>
 

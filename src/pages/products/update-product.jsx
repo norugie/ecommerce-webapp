@@ -1,17 +1,35 @@
-import { useContext } from "react";
+import axios from 'axios';
+import { useState, useContext, useEffect, useCallback } from "react";
 import { ShopContext } from "../../context/shop-context";
+import { useParams } from "react-router-dom"; 
 
 function UpdateProduct () {
-    const { 
-        productName, setProductName,
-        productDescription, setProductDescription,
-        productPrice, setProductPrice,
-        productQuantity, setProductQuantity,
-        productImage, setProductImage,
+    const { updateCurrentProduct } = useContext(ShopContext);
 
-        updateProduct
-    } = useContext(ShopContext);
+    const [productToUpdate, setProductToUpdate] = useState([]);
+    const [productName, setProductName] = useState('');
+    const [productDescription, setProductDescription] = useState('');
+    const [productPrice, setProductPrice] = useState(0.00);
+    const [productQuantity, setProductQuantity] = useState(0);
+    const [productImage, setProductImage] = useState('');
 
+    const { id } = useParams();
+
+    const getProduct = useCallback(async (id) => {
+        const response = await axios.get(`http://localhost:3001/products/${id}`);
+        setProductToUpdate(response.data);
+        setProductName(response.data[0].name);
+        setProductDescription(response.data[0].description);
+        setProductPrice(response.data[0].name);
+        setProductQuantity(response.data[0].quantity);
+        setProductImage(response.data[0].image);
+    }, []);
+
+    useEffect(() => {
+        getProduct(id);
+    }, [getProduct, id]);
+
+    console.log(productToUpdate);
     function handleUpdateProduct (e) {
         e.preventDefault();
         if (
@@ -21,6 +39,7 @@ function UpdateProduct () {
         ) return;
 
         const updatedProduct = {
+            id: id,
             name: productName,
             description: productDescription,
             price: parseFloat(productPrice),
@@ -28,15 +47,11 @@ function UpdateProduct () {
             image: productImage
         };
 
-        updateProduct(updatedProduct);
+        updateCurrentProduct(updatedProduct);
+    }
 
-        setProductName('');
-        setProductDescription('');
-        setProductPrice(0.00);
-        setProductQuantity(0);
-        setProductImage('');
-    } 
 
+    
     return (
         <div className='form-product'>
             <div className='form-title'>Update Product</div>
@@ -47,6 +62,7 @@ function UpdateProduct () {
                     className='form-text'
                     autoComplete='off' 
                     placeholder='Product Name'
+                    defaultValue={productName}
                     onChange={(e) => setProductName(e.target.value)} 
                 />
                 <textarea
@@ -54,28 +70,40 @@ function UpdateProduct () {
                     className='form-text'
                     rows='3' 
                     placeholder='Product Description'
+                    defaultValue={productDescription}
                     onChange={(e) => setProductDescription(e.target.value)}
                 ></textarea>
-                <input 
+                {/* <input 
                     type='text'
                     id='product-update-price'
                     className='form-text'
                     autoComplete='off' 
                     placeholder='Product Price (in dollars)'
+                    defaultValue={productPrice}
                     onChange={(e) => setProductPrice(e.target.value)}
+                /> */}
+                <input
+                    type='text'
+                    id='product-update-price'
+                    className='form-text'
+                    autoComplete='off' 
+                    placeholder='Product Name'
+                    defaultValue={productPrice}
+                    onChange={(e) => setProductPrice(e.target.value)} 
                 />
                 <div className='product-quantity'>
-                    <label htmlFor='product-quantity'>Available Stock: </label>
+                    <label htmlFor='product-update-quantity'>Available Stock: </label>
                     <input
                         type='number'
                         id='product-update-quantity'
                         className='quantity-field'
                         min='1'
+                        defaultValue={productQuantity}
                         onChange={(e) => setProductQuantity(e.target.value)}
                     />
                 </div>
                 <div className='product-image'>
-                    <label htmlFor='product-image'>Select image: </label>
+                    <label htmlFor='product-update-image'>Select image: </label>
                     <input 
                         type='file' 
                         id='product-update-image' 

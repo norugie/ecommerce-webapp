@@ -114,6 +114,31 @@
     width: 100%;
 }
 
+.manage-product {
+    width:100%;
+    text-align: center;
+}
+
+.update-btn, .delete-btn {
+    width: 50%;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.update-btn {
+    background-color: #008CBA;
+}
+
+.delete-btn {
+    background-color: #f44336;
+}
+
+.create-product-btn {
+    width: 250px;
+    /* display: inline-block; */
+    float: right;
+}
+
 @media screen and (max-width: 640px) {
     .form-product {
         left: 0;
@@ -129,6 +154,12 @@
 
     .form-submit {
         width: 90%;
+    }
+
+    .create-product-btn {
+        display: block;
+        width: 100%;
+        margin-top: 20px;
     }
 }
 

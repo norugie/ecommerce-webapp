@@ -3,11 +3,17 @@ import { ShopContext } from "../context/shop-context";
 import './modal.css';
 
 function Modal ({
-    selectedProduct, 
+    selectedProduct,
+    setSelectedProduct,
     open, 
     setOpen
 }) {
     const { addItemToCart } = useContext(ShopContext);
+
+    function closeModal () {
+        setOpen(false);
+        setSelectedProduct(null);
+    }
 
     return (
         <div className={`modal ${open ? 'open' : ''}`}>
@@ -27,7 +33,7 @@ function Modal ({
                     />
                 </div>
 
-                <a href='/#' className='modal-close' role='button' onClick={() => setOpen(false)}>&times;</a>
+                <a href='/#' className='modal-close' role='button' onClick={closeModal}>&times;</a>
             </div>
         </div>
     );

@@ -49,7 +49,7 @@ function App () {
                         }
                         />
                         <Route
-                            path='/products/update'
+                            path='/products/:id/update'
                             element={
                                 <div className='container'>
                                     <UpdateProduct />

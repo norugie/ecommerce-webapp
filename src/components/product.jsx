@@ -1,16 +1,26 @@
-import { useContext } from "react";
-import { ShopContext } from "../context/shop-context";
+import { useContext } from 'react';
+import { ShopContext } from '../context/shop-context';
+import { useNavigate } from 'react-router-dom';
 
 function Product ({
     product, 
     setOpen, 
     setSelectedProduct
 }) {
-    const { addItemToCart } = useContext(ShopContext);
+    const { 
+        addItemToCart,
+        deleteCurrentProduct
+    } = useContext(ShopContext);
     
     function onOpenProductModal (product) {
         setOpen(true);
         setSelectedProduct(product);
+    }
+
+    let navigate = useNavigate(); 
+    function updateProductRoute () { 
+        let path = `/products/${product.id}/update`; 
+        navigate(path);
     }
 
     return (
@@ -23,6 +33,11 @@ function Product ({
                 <h3 className='product-price'>$ {product.price}</h3>
             </div>
             <button className='add-to-cart-btn' onClick={() => addItemToCart(product)}>Add to cart</button>
+            
+            <div className='manage-product'>
+                <button className='update-btn' onClick={updateProductRoute}>Update</button>
+                <button className='delete-btn' onClick={() => deleteCurrentProduct(product.id)}>Delete</button>
+            </div>
         </div>
     );
 }
