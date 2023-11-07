@@ -9,7 +9,7 @@ function Navbar () {
         cartNumber, 
         logoutAdmin 
     } = useContext(ShopContext);
-    console.log(user);
+
     return(
         <header>
             <div className='container container-nav'>

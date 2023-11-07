@@ -6,21 +6,20 @@ import { useParams } from "react-router-dom";
 function UpdateProduct () {
     const { updateCurrentProduct } = useContext(ShopContext);
 
-    const [productToUpdate, setProductToUpdate] = useState([]);
     const [productName, setProductName] = useState('');
     const [productDescription, setProductDescription] = useState('');
-    const [productPrice, setProductPrice] = useState(0.00);
-    const [productQuantity, setProductQuantity] = useState(0);
+    const [productPrice, setProductPrice] = useState('');
+    const [productQuantity, setProductQuantity] = useState(1);
     const [productImage, setProductImage] = useState('');
 
     const { id } = useParams();
 
     const getProduct = useCallback(async (id) => {
         const response = await axios.get(`http://localhost:3001/products/${id}`);
-        setProductToUpdate(response.data);
+
         setProductName(response.data[0].name);
         setProductDescription(response.data[0].description);
-        setProductPrice(response.data[0].name);
+        setProductPrice(response.data[0].price);
         setProductQuantity(response.data[0].quantity);
         setProductImage(response.data[0].image);
     }, []);
@@ -29,7 +28,6 @@ function UpdateProduct () {
         getProduct(id);
     }, [getProduct, id]);
 
-    console.log(productToUpdate);
     function handleUpdateProduct (e) {
         e.preventDefault();
         if (
@@ -49,8 +47,6 @@ function UpdateProduct () {
 
         updateCurrentProduct(updatedProduct);
     }
-
-
     
     return (
         <div className='form-product'>
@@ -73,21 +69,12 @@ function UpdateProduct () {
                     defaultValue={productDescription}
                     onChange={(e) => setProductDescription(e.target.value)}
                 ></textarea>
-                {/* <input 
-                    type='text'
-                    id='product-update-price'
-                    className='form-text'
-                    autoComplete='off' 
-                    placeholder='Product Price (in dollars)'
-                    defaultValue={productPrice}
-                    onChange={(e) => setProductPrice(e.target.value)}
-                /> */}
                 <input
                     type='text'
                     id='product-update-price'
                     className='form-text'
                     autoComplete='off' 
-                    placeholder='Product Name'
+                    placeholder='Product Price'
                     defaultValue={productPrice}
                     onChange={(e) => setProductPrice(e.target.value)} 
                 />
@@ -98,7 +85,7 @@ function UpdateProduct () {
                         id='product-update-quantity'
                         className='quantity-field'
                         min='1'
-                        defaultValue={productQuantity}
+                        value={productQuantity}
                         onChange={(e) => setProductQuantity(e.target.value)}
                     />
                 </div>

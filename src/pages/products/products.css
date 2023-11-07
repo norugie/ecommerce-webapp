@@ -58,10 +58,9 @@
 }
 
 .form-product {
-    position: absolute;
-    margin: 0;
-    top: calc(50% - 250px);
-    left: calc(50% - 260px);
+    position: relative;
+    margin: 0 auto;
+    top: 3rem;
     background-color: #fff;
     border: 1px solid #aaa;
     width: 500px;
@@ -141,19 +140,17 @@
 
 @media screen and (max-width: 640px) {
     .form-product {
-        left: 0;
-        top: calc(20vh);
         position: relative;
         width: 100%;
 
     }
 
     .form-text {
-        width: 90%;
+        width: 100%;
     }
 
     .form-submit {
-        width: 90%;
+        width: 100%;
     }
 
     .create-product-btn {

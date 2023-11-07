@@ -92,8 +92,7 @@ export const ShopContextProvider = (props) => {
     }
 
     function updateCurrentProduct (product) {
-        axios.put('http://localhost:3001/products/update', {
-            id: product.id,
+        axios.put(`http://localhost:3001/products/${product.id}/update`, {
             name: product.name,
             description: product.description,
             price: product.price,
