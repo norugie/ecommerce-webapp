@@ -6,8 +6,8 @@ function AddProduct () {
     
     const [productName, setProductName] = useState('');
     const [productDescription, setProductDescription] = useState('');
-    const [productPrice, setProductPrice] = useState(0.00);
-    const [productQuantity, setProductQuantity] = useState(0);
+    const [productPrice, setProductPrice] = useState('');
+    const [productQuantity, setProductQuantity] = useState(1);
     const [productImage, setProductImage] = useState('');
 
     function handleAddProduct (e) {
@@ -28,7 +28,7 @@ function AddProduct () {
             description: productDescription,
             price: parseFloat(productPrice),
             quantity: parseInt(productQuantity),
-            image: productImage !== '' ? productImage : 'product-placeholder.png'
+            image: productImage
         };
 
         addNewProduct(newProduct);

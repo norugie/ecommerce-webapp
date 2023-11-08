@@ -78,13 +78,16 @@ export const ShopContextProvider = (props) => {
     // PRODUCTS =========================================================
     // Product Functions ============
     function addNewProduct (product) {
-        axios.post('http://localhost:3001/products/create', {
-            name: product.name,
-            description: product.description,
-            price: product.price,
-            quantity: product.quantity,
-            image: product.image
-        }).then((response) => {
+        console.log(product);
+        const data = new FormData();
+        data.append('name', product.name);
+        data.append('description', product.description);
+        data.append('price', product.price);
+        data.append('quantity', product.quantity);
+        data.append('image', product.image);
+        console.log(data);
+        axios.post('http://localhost:3001/products/create', data).then((response) => {
+            console.log(response);
             if (response.status === 200) {
                 window.location = '/'; 
             }

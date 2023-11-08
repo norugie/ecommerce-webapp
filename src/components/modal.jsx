@@ -8,7 +8,7 @@ function Modal ({
     open, 
     setOpen
 }) {
-    const { addItemToCart } = useContext(ShopContext);
+    const { user, addItemToCart } = useContext(ShopContext);
 
     function closeModal () {
         setOpen(false);
@@ -25,7 +25,19 @@ function Modal ({
                         <h4>Product Description</h4>
                         <p>{selectedProduct.description}</p>
                         <br />
-                        <button className='add-to-cart-btn' onClick={() => addItemToCart(selectedProduct)}>Add to cart</button>
+                        <p>Available Stock: {selectedProduct.quantity > 0 ? selectedProduct.quantity : 'Out of stock'}</p>
+                        <br />
+                        {
+                            !user 
+                            &&
+                                <>
+                                    {
+                                        selectedProduct.quantity > 0 
+                                        ? <button className='add-to-cart-btn' onClick={() => addItemToCart(selectedProduct)}>Add to cart</button>
+                                        : <button disabled>Out of stock</button>
+                                    }
+                                </>
+                        }
                     </div>
                     <img 
                         src={ require(`../assets/images/products/${selectedProduct.image}`) } 

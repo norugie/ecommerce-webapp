@@ -33,14 +33,23 @@ function Product ({
                 <h3 className='product-title'><a href='/#' onClick={() => onOpenProductModal(product)}>{product.name}</a></h3>
                 <h3 className='product-price'>$ {product.price}</h3>
             </div>
-            {!user && <button className='add-to-cart-btn' onClick={() => addItemToCart(product)}>Add to cart</button>}
-            
             {
-                user &&
-                <div className='manage-product'>
-                    <button className='update-btn' onClick={updateProductRoute}>Update</button>
-                    <button className='delete-btn' onClick={() => deleteCurrentProduct(product.id)}>Delete</button>
-                </div>
+                !user 
+                ?
+                    <>
+                        {
+                            product.quantity > 0 
+                            ? <button className='add-to-cart-btn' onClick={() => addItemToCart(product)}>Add to cart</button>
+                            : <button className='disabled' disabled>Sold Out</button>
+                        }
+                    </>
+                : 
+                    <>
+                        <div className='manage-product'>
+                            <button className='update-btn' onClick={updateProductRoute}>Update</button>
+                            <button className='delete-btn' onClick={() => deleteCurrentProduct(product.id)}>Delete</button>
+                        </div>
+                    </>
             }
         </div>
     );

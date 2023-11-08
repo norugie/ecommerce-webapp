@@ -138,6 +138,14 @@
     float: right;
 }
 
+button:disabled,
+button[disabled]{
+    background-color: #cccccc;
+    color: #666666;
+    cursor: default;
+}
+
+
 @media screen and (max-width: 640px) {
     .form-product {
         position: relative;
