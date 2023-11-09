@@ -77,17 +77,20 @@ export const ShopContextProvider = (props) => {
 
     // PRODUCTS =========================================================
     // Product Functions ============
+    // Form data for processing product entries
+    const form = (product) => {
+        const form = new FormData();
+        form.append('name', product.name);
+        form.append('description', product.description);
+        form.append('price', product.price);
+        form.append('quantity', product.quantity);
+        form.append('image', product.image);
+        return form;
+    } 
+
     function addNewProduct (product) {
-        console.log(product);
-        const data = new FormData();
-        data.append('name', product.name);
-        data.append('description', product.description);
-        data.append('price', product.price);
-        data.append('quantity', product.quantity);
-        data.append('image', product.image);
-        console.log(data);
+        const data = form(product);
         axios.post('http://localhost:3001/products/create', data).then((response) => {
-            console.log(response);
             if (response.status === 200) {
                 window.location = '/'; 
             }
@@ -95,13 +98,8 @@ export const ShopContextProvider = (props) => {
     }
 
     function updateCurrentProduct (product) {
-        axios.put(`http://localhost:3001/products/${product.id}/update`, {
-            name: product.name,
-            description: product.description,
-            price: product.price,
-            quantity: product.quantity,
-            image: product.image
-        }).then((response) => {
+        const data = form(product);
+        axios.put(`http://localhost:3001/products/${product.id}/update`, data).then((response) => {
             if (response.status === 200) {
                 window.location = '/'; 
             }
@@ -109,7 +107,6 @@ export const ShopContextProvider = (props) => {
     }
 
     function deleteCurrentProduct (id) {
-        console.log(id);
         axios.delete(`http://localhost:3001/products/${id}/delete`).then((response) => {
             if (response.status === 200) {
                 window.location = '/'; 

@@ -97,7 +97,7 @@ function UpdateProduct () {
                         className='image-field'
                         name='product-image' 
                         accept='image/*'
-                        onChange={(e) => setProductImage(e.target.value)}
+                        onChange={(e) => {setProductImage(e.target.files[0])}}
                     />
                 </div>
 
