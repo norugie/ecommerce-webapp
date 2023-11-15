@@ -19,14 +19,15 @@ export const ProductContextProvider = (props) => {
         setProducts(response.data);
     }, []);
 
-    const getProduct = useCallback(async (id) => {
+    const getProduct = async (id) => {
         const response = await axios.get(`http://localhost:3001/products/${id}`);
-        setProductName(response.data[0].name);
-        setProductDescription(response.data[0].description);
-        setProductPrice(response.data[0].price);
-        setProductQuantity(parseInt(response.data[0].quantity));
-        setProductImage(response.data[0].image);
-    }, []);
+
+        setProductName(response.data.name);
+        setProductDescription(response.data.description);
+        setProductPrice(response.data.price);
+        setProductQuantity(response.data.quantity);
+        setProductImage(response.data.image);
+    }
 
     // Form data object for processing product entries
     const form = (product) => {
@@ -39,9 +40,9 @@ export const ProductContextProvider = (props) => {
         return form;
     } 
 
-    function addNewProduct (product) {
+    const addNewProduct = async (product) => {
         const data = form(product);
-        axios
+        await axios
         .post('http://localhost:3001/products/create', data)
         .then((response) => {
             if (response.status === 200) {
