@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
 import { useContext } from "react";
-import { ShopContext } from "../context/shop-context";
+import { UserContext } from "../context/user-context";
+import { CartContext } from "../context/cart-context";
 import './navbar.css';
 
 function Navbar () {
     const { 
-        user, 
-        cartNumber, 
+        user,
         logoutAdmin 
-    } = useContext(ShopContext);
+    } = useContext(UserContext);
+
+    const { cartNumber } = useContext(CartContext);
 
     return(
         <header>

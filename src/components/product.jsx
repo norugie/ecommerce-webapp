@@ -1,5 +1,6 @@
 import { useContext } from 'react';
-import { ShopContext } from '../context/shop-context';
+import { UserContext } from '../context/user-context';
+import { CartContext } from '../context/cart-context';
 import { useNavigate } from 'react-router-dom';
 
 function Product ({
@@ -7,11 +8,11 @@ function Product ({
     setOpen, 
     setSelectedProduct
 }) {
+    const { user } = useContext(UserContext);
     const { 
-        user,
         addItemToCart,
         deleteCurrentProduct
-    } = useContext(ShopContext);
+    } = useContext(CartContext);
     
     function onOpenProductModal (product) {
         setOpen(true);

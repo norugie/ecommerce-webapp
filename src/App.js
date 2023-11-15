@@ -1,6 +1,10 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ShopContextProvider } from './context/shop-context';
+import { Navigate } from 'react-router-dom';
+import { useContext } from "react";
+import { UserContext } from "./context/user-context";
+import { CartContextProvider } from './context/cart-context';
+import { ProductContextProvider } from './context/product-context';
 
 import Navbar from './components/navbar';
 import Products from './pages/products/products';
@@ -10,17 +14,21 @@ import AddProduct from './pages/products/add-product';
 import UpdateProduct from './pages/products/update-product';
 
 function App () {
+    const { user } = useContext(UserContext);
+
     return (
         <div className='app'>
             <Router>
-                <ShopContextProvider>
+                <CartContextProvider>
                     <Navbar />
                     <Routes>
                         <Route
                             path='/'
                             element={
                                 <div className='container'>
-                                    <Products />
+                                    <ProductContextProvider>
+                                        <Products />
+                                    </ProductContextProvider>
                                 </div>
                             }
                         />
@@ -32,32 +40,51 @@ function App () {
                                 </div>
                             }
                         />
-                        <Route
-                            path='/login'
-                            element={
-                                <div className='container'>
-                                    <Login />
-                                </div>
+                        {
+                            !user
+                            ? (
+                                <Route
+                                    path='/login'
+                                    element={
+                                        <div className='container'>
+                                            <Login />
+                                        </div>
+                                }
+                                />
+                            )
+                            : null
                         }
-                        />
-                        <Route
-                            path='/products/add'
-                            element={
-                                <div className='container'>
-                                    <AddProduct />
-                                </div>
+                        {
+                            user 
+                            ? (
+                                <>
+                                    <Route
+                                        path='/products/add'
+                                        element={
+                                            <div className='container'>
+                                                <ProductContextProvider>
+                                                    <AddProduct />
+                                                </ProductContextProvider>
+                                            </div>
+                                    }
+                                    />
+                                    <Route
+                                        path='/products/:id/update'
+                                        element={
+                                            <div className='container'>
+                                                <ProductContextProvider>
+                                                    <UpdateProduct />
+                                                </ProductContextProvider>
+                                            </div>
+                                    }
+                                    />
+                                </>
+                            )
+                            : null
                         }
-                        />
-                        <Route
-                            path='/products/:id/update'
-                            element={
-                                <div className='container'>
-                                    <UpdateProduct />
-                                </div>
-                        }
-                        />
+                        <Route path={"*"} element={ <Navigate replace to={ "/" }/> }/>
                     </Routes>
-                </ShopContextProvider>
+                </CartContextProvider>
             </Router>
         </div>
     );

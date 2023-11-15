@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import { ShopContext } from "../../context/shop-context";
+import { ProductContext } from "../../context/product-context";
 
 function AddProduct () {
-    const { addNewProduct } = useContext(ShopContext);
+    const { addNewProduct } = useContext(ProductContext);
     
     const [productName, setProductName] = useState('');
     const [productDescription, setProductDescription] = useState('');
@@ -17,9 +17,6 @@ function AddProduct () {
             !productPrice || 
             !productQuantity
         ) return;
-
-        const formdata = new FormData();
-        formdata.append('file', productImage);
 
         const id = crypto.randomUUID();
         const newProduct = {

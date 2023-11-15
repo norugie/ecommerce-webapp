@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
-import { ShopContext } from "../../context/shop-context";
+import { UserContext } from "../../context/user-context";
 
 import './login.css';
 
 function Login () {
-    const { loginAdmin } = useContext(ShopContext);
+    const { loginAdmin } = useContext(UserContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 

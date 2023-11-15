@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useContext } from "react";
-import { ShopContext } from "../context/shop-context";
+import { CartContext } from "../context/cart-context";
 
 function Item ({ item }) {
     const [quantity, setQuantity] = useState(item.quantity);
-    const { updateCartItemQuantity, removeItemFromCart } = useContext(ShopContext);
+    const { updateCartItemQuantity, removeItemFromCart } = useContext(CartContext);
 
     function onChangeValue(quantity) {
         quantity = parseInt(quantity);

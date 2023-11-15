@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { ShopContext } from "../context/shop-context";
+import { CartContext } from "../context/cart-context";
 
 function Summary () {
-    const { total } = useContext(ShopContext);
+    const { total } = useContext(CartContext);
     return (
         <aside>
             <div className='summary'>

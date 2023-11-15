@@ -1,28 +1,19 @@
-import axios from 'axios';
-import { useState, useContext, useEffect, useCallback } from "react";
-import { ShopContext } from "../../context/shop-context";
+import { useContext, useEffect } from "react";
+import { ProductContext } from "../../context/product-context";
 import { useParams } from "react-router-dom"; 
 
 function UpdateProduct () {
-    const { updateCurrentProduct } = useContext(ShopContext);
-
-    const [productName, setProductName] = useState('');
-    const [productDescription, setProductDescription] = useState('');
-    const [productPrice, setProductPrice] = useState('');
-    const [productQuantity, setProductQuantity] = useState(1);
-    const [productImage, setProductImage] = useState('');
+    const {
+        productName, setProductName,
+        productDescription, setProductDescription,
+        productPrice, setProductPrice,
+        productQuantity, setProductQuantity,
+        productImage, setProductImage,
+        getProduct, 
+        updateCurrentProduct
+    } = useContext(ProductContext);
 
     const { id } = useParams();
-
-    const getProduct = useCallback(async (id) => {
-        const response = await axios.get(`http://localhost:3001/products/${id}`);
-
-        setProductName(response.data[0].name);
-        setProductDescription(response.data[0].description);
-        setProductPrice(response.data[0].price);
-        setProductQuantity(response.data[0].quantity);
-        setProductImage(response.data[0].image);
-    }, []);
 
     useEffect(() => {
         getProduct(id);
@@ -45,6 +36,7 @@ function UpdateProduct () {
             image: productImage
         };
 
+        console.log(updatedProduct);
         updateCurrentProduct(updatedProduct);
     }
     
@@ -85,7 +77,7 @@ function UpdateProduct () {
                         id='product-update-quantity'
                         className='quantity-field'
                         min='1'
-                        value={productQuantity}
+                        defaultValue={productQuantity}
                         onChange={(e) => setProductQuantity(e.target.value)}
                     />
                 </div>

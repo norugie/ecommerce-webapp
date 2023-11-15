@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import { ShopContext } from "../context/shop-context";
+import { UserContext } from "../context/user-context";
+import { CartContext } from "../context/cart-context";
 import './modal.css';
 
 function Modal ({
@@ -8,7 +9,8 @@ function Modal ({
     open, 
     setOpen
 }) {
-    const { user, addItemToCart } = useContext(ShopContext);
+    const { user } = useContext(UserContext);
+    const { addItemToCart } = useContext(CartContext);
 
     function closeModal () {
         setOpen(false);
