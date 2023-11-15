@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { ProductContext } from "../../context/product-context";
+import { ProductContext } from '../../context/product-context';
 
 import Product from '../../components/product';
 import SearchForm from '../../components/search-form';

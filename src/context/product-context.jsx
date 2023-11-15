@@ -10,7 +10,7 @@ export const ProductContextProvider = (props) => {
     const [productName, setProductName] = useState('');
     const [productDescription, setProductDescription] = useState('');
     const [productPrice, setProductPrice] = useState('');
-    const [productQuantity, setProductQuantity] = useState('');
+    const [productQuantity, setProductQuantity] = useState(1);
     const [productImage, setProductImage] = useState('');
 
     // Product Functions ============

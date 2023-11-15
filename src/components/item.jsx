@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useContext } from "react";
-import { CartContext } from "../context/cart-context";
+import { useContext } from 'react';
+import { CartContext } from '../context/cart-context';
 
 function Item ({ item }) {
     const [quantity, setQuantity] = useState(item.quantity);

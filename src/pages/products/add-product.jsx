@@ -1,14 +1,16 @@
-import { useContext, useState } from "react";
-import { ProductContext } from "../../context/product-context";
+import { useContext } from 'react';
+import { ProductContext } from '../../context/product-context';
 
 function AddProduct () {
-    const { addNewProduct } = useContext(ProductContext);
-    
-    const [productName, setProductName] = useState('');
-    const [productDescription, setProductDescription] = useState('');
-    const [productPrice, setProductPrice] = useState('');
-    const [productQuantity, setProductQuantity] = useState(1);
-    const [productImage, setProductImage] = useState('');
+    const { 
+        productName, setProductName,
+        productDescription, setProductDescription,
+        productPrice, setProductPrice,
+        productQuantity, setProductQuantity,
+        productImage, setProductImage,
+        addNewProduct
+    } = useContext(ProductContext);
+
 
     function handleAddProduct (e) {
         e.preventDefault();
@@ -41,6 +43,7 @@ function AddProduct () {
                     className='form-text'
                     autoComplete='off' 
                     placeholder='Product Name'
+                    defaultValue={productName}
                     onChange={(e) => setProductName(e.target.value)} 
                 />
                 <textarea
@@ -48,6 +51,7 @@ function AddProduct () {
                     className='form-text'
                     rows='3' 
                     placeholder='Product Description'
+                    defaultValue={productDescription}
                     onChange={(e) => setProductDescription(e.target.value)}
                 ></textarea>
                 <input 
@@ -56,6 +60,7 @@ function AddProduct () {
                     className='form-text'
                     autoComplete='off' 
                     placeholder='Product Price (in dollars)'
+                    defaultValue={productPrice}
                     onChange={(e) => setProductPrice(e.target.value)}
                 />
                 <div className='product-quantity'>
@@ -65,6 +70,7 @@ function AddProduct () {
                         id='product-quantity'
                         className='quantity-field'
                         min='1'
+                        defaultValue={productQuantity}
                         onChange={(e) => setProductQuantity(e.target.value)}
                     />
                 </div>

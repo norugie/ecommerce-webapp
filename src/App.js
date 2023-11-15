@@ -1,8 +1,8 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
-import { useContext } from "react";
-import { UserContext } from "./context/user-context";
+import { useContext } from 'react';
+import { UserContext } from './context/user-context';
 import { CartContextProvider } from './context/cart-context';
 import { ProductContextProvider } from './context/product-context';
 
@@ -82,7 +82,7 @@ function App () {
                             )
                             : null
                         }
-                        <Route path={"*"} element={ <Navigate replace to={ "/" }/> }/>
+                        <Route path={'*'} element={ <Navigate replace to={ '/' }/> }/>
                     </Routes>
                 </CartContextProvider>
             </Router>

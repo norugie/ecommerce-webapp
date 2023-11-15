@@ -1,6 +1,6 @@
-import { useContext, useEffect } from "react";
-import { ProductContext } from "../../context/product-context";
-import { useParams } from "react-router-dom"; 
+import { useContext, useEffect } from 'react';
+import { ProductContext } from '../../context/product-context';
+import { useParams } from 'react-router-dom'; 
 
 function UpdateProduct () {
     const {
