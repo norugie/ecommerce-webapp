@@ -17,15 +17,22 @@ export const ProductContextProvider = (props) => {
     const getProducts = useCallback(async () => {
         const response = await axios.get('http://localhost:3001/products');
         setProducts(response.data);
+
+        setProductName('');
+        setProductDescription('');
+        setProductPrice('');
+        setProductQuantity(1);
+        setProductImage('');
     }, []);
 
     const getProduct = useCallback(async (id) => {
         const response = await axios.get(`http://localhost:3001/products/${id}`);
-        setProductName(response.data[0].name);
-        setProductDescription(response.data[0].description);
-        setProductPrice(response.data[0].price);
-        setProductQuantity(parseInt(response.data[0].quantity));
-        setProductImage(response.data[0].image);
+
+        setProductName(response.data.name);
+        setProductDescription(response.data.description);
+        setProductPrice(response.data.price);
+        setProductQuantity(response.data.quantity);
+        setProductImage(response.data.image);
     }, []);
 
     // Form data object for processing product entries
@@ -39,9 +46,9 @@ export const ProductContextProvider = (props) => {
         return form;
     } 
 
-    function addNewProduct (product) {
+    const addNewProduct = async (product) => {
         const data = form(product);
-        axios
+        await axios
         .post('http://localhost:3001/products/create', data)
         .then((response) => {
             if (response.status === 200) {
@@ -51,6 +58,7 @@ export const ProductContextProvider = (props) => {
     }
 
     function updateCurrentProduct (product) {
+        console.log(product);
         const data = form(product);
         axios
         .put(`http://localhost:3001/products/${product.id}/update`, data)
@@ -65,6 +73,7 @@ export const ProductContextProvider = (props) => {
         axios
         .delete(`http://localhost:3001/products/${id}/delete`)
         .then((response) => {
+            console.log(response.status);
             if (response.status === 200) {
                 window.location = '/'; 
             }

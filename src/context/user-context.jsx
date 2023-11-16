@@ -13,18 +13,15 @@ export const UserContextProvider = (props) => {
     );
 
     // User Functions ============
-    function loginAdmin (login) {
-        axios
+    const loginAdmin = async (login) => {
+        const response = await axios
         .post('http://localhost:3001/login', {
             username: login.username,
             password: login.password
-        })
-        .then((response) => {
-            if (response.status === 200) {
-                setUser(response.data[0].name);
-                window.location = '/';
-            }
         });
+
+        setUser(response.data.name);
+        window.location = '/';
     }
 
     function logoutAdmin () {

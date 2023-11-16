@@ -36,7 +36,6 @@ function UpdateProduct () {
             image: productImage
         };
 
-        console.log(updatedProduct);
         updateCurrentProduct(updatedProduct);
     }
     
@@ -77,7 +76,7 @@ function UpdateProduct () {
                         id='product-update-quantity'
                         className='quantity-field'
                         min='1'
-                        defaultValue={productQuantity}
+                        value={productQuantity}
                         onChange={(e) => setProductQuantity(e.target.value)}
                     />
                 </div>
