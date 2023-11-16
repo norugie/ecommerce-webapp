@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { UserContext } from '../context/user-context';
 import { CartContext } from '../context/cart-context';
+import { ProductContext } from '../context/product-context';
 import { useNavigate } from 'react-router-dom';
 
 function Product ({
@@ -9,10 +10,8 @@ function Product ({
     setSelectedProduct
 }) {
     const { user } = useContext(UserContext);
-    const { 
-        addItemToCart,
-        deleteCurrentProduct
-    } = useContext(CartContext);
+    const { addItemToCart } = useContext(CartContext);
+    const { deleteCurrentProduct } = useContext(ProductContext);
     
     function onOpenProductModal (product) {
         setOpen(true);

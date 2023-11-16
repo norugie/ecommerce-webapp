@@ -17,9 +17,15 @@ export const ProductContextProvider = (props) => {
     const getProducts = useCallback(async () => {
         const response = await axios.get('http://localhost:3001/products');
         setProducts(response.data);
+
+        setProductName('');
+        setProductDescription('');
+        setProductPrice('');
+        setProductQuantity(1);
+        setProductImage('');
     }, []);
 
-    const getProduct = async (id) => {
+    const getProduct = useCallback(async (id) => {
         const response = await axios.get(`http://localhost:3001/products/${id}`);
 
         setProductName(response.data.name);
@@ -27,7 +33,7 @@ export const ProductContextProvider = (props) => {
         setProductPrice(response.data.price);
         setProductQuantity(response.data.quantity);
         setProductImage(response.data.image);
-    }
+    }, []);
 
     // Form data object for processing product entries
     const form = (product) => {
@@ -52,6 +58,7 @@ export const ProductContextProvider = (props) => {
     }
 
     function updateCurrentProduct (product) {
+        console.log(product);
         const data = form(product);
         axios
         .put(`http://localhost:3001/products/${product.id}/update`, data)
@@ -66,6 +73,7 @@ export const ProductContextProvider = (props) => {
         axios
         .delete(`http://localhost:3001/products/${id}/delete`)
         .then((response) => {
+            console.log(response.status);
             if (response.status === 200) {
                 window.location = '/'; 
             }
