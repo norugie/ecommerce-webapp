@@ -20,8 +20,10 @@ export const UserContextProvider = (props) => {
             password: login.password
         });
 
-        setUser(response.data.name);
-        window.location = '/';
+        if (response.status === 200) {
+            setUser(response.data.name);
+            window.location = '/';
+        }
     }
 
     function logoutAdmin () {

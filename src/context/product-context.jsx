@@ -47,41 +47,33 @@ export const ProductContextProvider = (props) => {
         return form;
     } 
 
-    function addNewProduct (product) {
-        const data = form(product);
-        axios
-        .post('http://localhost:3001/products/create', data)
-        .then((response) => {
-            if (response.status === 200) {
-                window.location = '/'; 
-            }
-        });
+    async function addNewProduct (product) {
+        const data = await form(product);
+        const response = await axios
+        .post('http://localhost:3001/products/create', data);
+
+        if (response.status === 200) window.location = '/';
     }
 
-    function updateCurrentProduct (product) {
-        console.log(product);
-        const data = form(product);
-        axios
+    async function updateCurrentProduct (product) {
+        const data = await form(product);        
+        const response = await axios
         .put(`http://localhost:3001/products/${product.id}/update`, data)
-        .then((response) => {
-            if (response.status === 200) {
-                window.location = '/'; 
-            }
-        });
+
+        if (response.status === 200) window.location = '/';
     }
 
-    function deleteCurrentProduct (id) {
-        axios
+    async function deleteCurrentProduct (id) {
+        const response = await axios
         .delete(`http://localhost:3001/products/${id}/delete`)
-        .then((response) => {
-            if (response.status === 200) {
-                setProducts((products) => (
-                    products.filter((product) => 
-                        product.id !== id
-                    )
-                ));
-            }
-        });
+
+        if (response.status === 200) {
+            setProducts((products) => (
+                products.filter((product) => 
+                    product.id !== id
+                )
+            ));
+        }
     }
 
     //  ============================================================
