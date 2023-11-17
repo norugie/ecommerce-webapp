@@ -43,7 +43,7 @@ function AddProduct () {
                     className='form-text'
                     autoComplete='off' 
                     placeholder='Product Name'
-                    defaultValue={productName}
+                    value={productName}
                     onChange={(e) => setProductName(e.target.value)} 
                 />
                 <textarea
@@ -51,7 +51,7 @@ function AddProduct () {
                     className='form-text'
                     rows='3' 
                     placeholder='Product Description'
-                    defaultValue={productDescription}
+                    value={productDescription}
                     onChange={(e) => setProductDescription(e.target.value)}
                 ></textarea>
                 <input 
@@ -60,7 +60,7 @@ function AddProduct () {
                     className='form-text'
                     autoComplete='off' 
                     placeholder='Product Price (in dollars)'
-                    defaultValue={productPrice}
+                    value={productPrice}
                     onChange={(e) => setProductPrice(e.target.value)}
                 />
                 <div className='product-quantity'>
@@ -70,7 +70,7 @@ function AddProduct () {
                         id='product-quantity'
                         className='quantity-field'
                         min='1'
-                        defaultValue={productQuantity}
+                        value={productQuantity}
                         onChange={(e) => setProductQuantity(e.target.value)}
                     />
                 </div>

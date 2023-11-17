@@ -22,6 +22,7 @@ function Login () {
         setUsername('');
         setPassword('');
     }
+
     return (
         <div className='login'>
             <div className='login-title'>Sign In</div>
@@ -33,7 +34,7 @@ function Login () {
                     autoComplete='off'
                     placeholder='Username'
                     value={username}
-                    onChange={(e) => (setUsername(e.target.value))}
+                    onChange={(e) => setUsername(e.target.value)}
                 />
                 <input 
                     type='password'
@@ -41,7 +42,7 @@ function Login () {
                     className='login-text'
                     placeholder='Password' 
                     value={password}
-                    onChange={(e) => (setPassword(e.target.value))}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
                 <br />
                 <div className='login-submit'>

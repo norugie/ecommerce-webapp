@@ -83,6 +83,8 @@ export const ProductContextProvider = (props) => {
         });
     }
 
+    //  ============================================================
+    
     const productContextValue = {
         // Product context values
         products,

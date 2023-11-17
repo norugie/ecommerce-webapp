@@ -46,7 +46,14 @@ function Products () {
                 }
 
             </div>
-            {open && <Modal selectedProduct={selectedProduct} setSelectedProduct={setSelectedProduct} open={open} setOpen={setOpen} />}
+            {open && 
+                <Modal 
+                    selectedProduct={selectedProduct} 
+                    setSelectedProduct={setSelectedProduct} 
+                    open={open} 
+                    setOpen={setOpen} 
+                />
+            }
         </>
     );
 }

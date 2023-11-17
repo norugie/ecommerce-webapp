@@ -49,7 +49,7 @@ function UpdateProduct () {
                     className='form-text'
                     autoComplete='off' 
                     placeholder='Product Name'
-                    defaultValue={productName}
+                    value={productName}
                     onChange={(e) => setProductName(e.target.value)} 
                 />
                 <textarea
@@ -57,7 +57,7 @@ function UpdateProduct () {
                     className='form-text'
                     rows='3' 
                     placeholder='Product Description'
-                    defaultValue={productDescription}
+                    value={productDescription}
                     onChange={(e) => setProductDescription(e.target.value)}
                 ></textarea>
                 <input
@@ -66,7 +66,7 @@ function UpdateProduct () {
                     className='form-text'
                     autoComplete='off' 
                     placeholder='Product Price'
-                    defaultValue={productPrice}
+                    value={productPrice}
                     onChange={(e) => setProductPrice(e.target.value)} 
                 />
                 <div className='product-quantity'>
@@ -88,7 +88,7 @@ function UpdateProduct () {
                         className='image-field'
                         name='product-image' 
                         accept='image/*'
-                        onChange={(e) => {setProductImage(e.target.files[0])}}
+                        onChange={(e) => setProductImage(e.target.files[0])}
                     />
                 </div>
 
