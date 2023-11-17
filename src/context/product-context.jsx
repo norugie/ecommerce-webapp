@@ -43,12 +43,13 @@ export const ProductContextProvider = (props) => {
         form.append('price', product.price);
         form.append('quantity', product.quantity);
         form.append('image', product.image);
+        
         return form;
     } 
 
-    const addNewProduct = async (product) => {
+    function addNewProduct (product) {
         const data = form(product);
-        await axios
+        axios
         .post('http://localhost:3001/products/create', data)
         .then((response) => {
             if (response.status === 200) {
