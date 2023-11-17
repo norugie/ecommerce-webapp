@@ -73,9 +73,12 @@ export const ProductContextProvider = (props) => {
         axios
         .delete(`http://localhost:3001/products/${id}/delete`)
         .then((response) => {
-            console.log(response.status);
             if (response.status === 200) {
-                window.location = '/'; 
+                setProducts((products) => (
+                    products.filter((product) => 
+                        product.id !== id
+                    )
+                ));
             }
         });
     }

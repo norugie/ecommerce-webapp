@@ -26,7 +26,6 @@ export const UserContextProvider = (props) => {
 
     function logoutAdmin () {
         setUser('');
-        window.location = '/';
     }
 
     //  ============================================================
